@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="colinivy" />
+<title> Colinivy's Test Page</title>
+<style type="text/css">
+    #div1 {background-color:#F90;width:200px;height:200px;position:absolute;top:50px;left:50px;}
+</style>
+</head>
+<body>
+    <div id="div1" >Click ME</div>
+</body>
+<script type="text/javascript">
+    // create
+    var create = function (o) {
+        var f = function () {} ;
+        f.prototype = o ;
+        return new f() ;
+    } ;
+
+    // 动画相关变量
+    var timers = [],
+        timerId = null;
+
+    // 定义原型
+    var pt = {
+        getCss: function (dom, name) {
+            try {
+                return parseInt(window.getComputedStyle(dom, null).getPropertyValue(name)) ;
+            }catch (e){
+                return parseInt(dom.currentStyle[name]) ;
+            }
+        },
+        // 相当与jQuery中的animate接口
+        run: function (dom, prop, d, easing, callback) {
+            for (var name in prop) {
+                var config = {
+                    'dom': dom,
+                    'd': d,
+                    'easing': easing,
+                    'callback':callback,
+                    'name': name,
+                    'from': this.getCss(dom, name),
+                    'to': prop[name]
+                } ;
+                var fx = new FX(config) ;
+                fx.custom();
+            }
+        }
+    } ;
+
+    // 动画构造函数
+    var FX = function () {
+        for (var i in arguments[0]) {
+            this[i] = arguments[0][i] ;
+        }
+    } ;
+
+    // 扩展动画原型
+    FX.prototype.custom = function () {
+        this.startTime = + new Date() ;
+        var self = this ;
+        function fn() {
+            self.step();
+        }
+        fn();
+        timers.push(fn);
+        
+        // 保证一个动画中只有一个定时器
+        if (timerId) return  ;
+        timerId = setInterval(function () {
+            if (timers.length > 0){
+                for (var i = 0, k ; k = timers[i] ; i++ ) {
+                    k();
+                }
+            }else {
+                clearInterval(timerId);
+                timerId = null ;
+            }
+        }, 16); 
+        
+    } ;
+
+    FX.prototype.step = function () {
+        var n = (+ new Date())- this.startTime ;
+        if (n > this.d){
+            this.dom.style[this.name] = this.to + 'px' ;
+            // remove this anim 
+            for (var i = 0, k ; k = timers[i] ; i++ ) {
+                if (k === this){
+                    timers.splice(i--, 1);
+                }
+            }
+            if (this.callback && typeof this.callback == 'function'){
+                this.callback();
+            }
+        }else {
+            var ratio = n/this.d ;
+            var temp = this.eas[this.easing](ratio, n, 0, 1) ;
+            var change = this.from + temp*(this.to-this.from) ;
+            this.dom.style[this.name]  = change + 'px' ;
+        }
+    } ;
+
+    FX.prototype.eas = {
+        linear: function( p, n, firstNum, diff ) {
+            return firstNum + diff * p;
+        },
+        swing: function( p, n, firstNum, diff ) {
+            return ((-Math.cos(p*Math.PI)/2) + 0.5) * diff + firstNum;
+        }
+    }
+
+    var anim = create(pt);
+
+    document.getElementById('div1').onclick = function () {
+        anim.run(this,{'left': 500, 'top':300}, 800, 'swing');
+    } ;
+</script>
+</html>

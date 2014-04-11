@@ -1,0 +1,33 @@
+* {margin:0;padding:0;list-style:none;}
+body {background-color:#fff;font:400 14px/20px proxima-nova,tahoma,Arial,"\5FAE\8F6F\96C5\9ED1";}
+
+.nui_boss {height:280px;margin:0px;color:#09f;font:100 128px/280px omnes-pro, sans-serif;text-align:center;}
+
+.nui_m {width:900px;margin:0 auto;padding-bottom:20px;}
+.nui_m_item {margin-top:30px;}
+.nui_h3 {margin:0px;height:40px;font-size:20px;line-height:40px;border-bottom:1px solid #eee;}
+.nui_con pre {padding:10px 10px;margin-top:5px;font-size:16px;line-height:20px;opacity:0;}
+
+.nui_code_effect {border:1px dotted #ddd;padding:20px;zoom:1;}
+.nui_code_effect:before {content:"Result";float:left;margin-top:-32px;background-color:#fff;padding:2px 5px;color:#666;}
+.nui_code_effect:after {content:'';display:block;clear:both;height:0;visibility:hidden;}
+
+/* =====copy btn===== */
+.copy_btn {position:absolute;display:none;overflow:hidden;font-size:12px;padding:5px 10px;}
+.copy_btn embed {position:absolute;top:0px;left:0px;}
+.copy_shadow {position:absolute;top:0px;left:0px;width:100%;height:100%;cursor:wait;}
+
+.copy_ret {display:none;position:fixed;width:200px;height:50px;top:50%;left:50%;margin-left:-100px;margin-top:-25px;font:400 20px/50px "\5FAE\8F6F\96C5\9ED1";border:2px solid rgba(0,0,0,0.3);color:#3A8E00;overflow:hidden;background-color:#fff;text-align:center;border-radius:5px;}
+
+/* side widget */
+.nui_widget {position:fixed;top:320px;left:50%;margin-left:-570px;width:100px;-webkit-transform:translateZ(0);}
+
+/* =====tab with gap===== */
+/* todo remove to ui-mod.css */
+.sod_mtab {height:30px;border-bottom:2px solid #f70;}
+.sod_mtab li {float:left;height:30px;padding:0 20px;font:400 14px/30px Arial;}
+.sod_mtab a:hover {text-decoration:none;}
+.sod_mtab .sod_mtab_gap {float:left;width:1px;height:14px;padding:0px;margin:10px 0px 0;overflow:hidden;background-color:#999;}
+.sod_mtab .on {position:relative;margin:0px -1px;padding:0px 21px;background-color:#f60;}
+.sod_mtab .on a,
+.sod_mtab .on a:hover {color:#fff;}

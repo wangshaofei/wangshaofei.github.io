@@ -1,0 +1,51 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="colinivy" />
+<title> Colinivy's Test Page</title>
+<script type="text/javascript" src="file:///d:/tool/develop/editplus/colinivy/debug.js"></script>
+<script type="text/javascript" src="viva.js"></script>
+<style type="text/css">
+    * {margin:0; padding:0; list-style:none; }
+    body {font:normal 12px/30px Verdana;padding: 20px;background-color: #FFF;}
+    
+    .co_red {color:red;}
+</style>
+
+</head>
+<body>
+<div id="test" class="test">
+    test world!
+</div>
+<ul>
+    <li class="item">list item information longer longer longer longer</li>
+    <li class="item">list item information longer longer longer longer</li>
+    <li class="item">list item information longer longer longer longer</li>
+    <li>123</li>
+    <li>list item information longer longer longer longer</li>
+</ul>
+<label id="lab" for="id1"></label>
+<input type="text" value="111" class="txt1" autocomplete="off"/>
+<input type="text" value="222" class="txt2" autocomplete="off"/>
+<input type="button" value="" autocomplete="off"/>
+
+<script type="text/javascript">
+VIVA.debug = 1;
+var el = $("li");
+el = $(":input[type='text']");
+el = $('#test');
+$console(el.hasClass('test'))
+// el.show('inline');
+// $console(el.attr('class'));
+ // el.attr('class', 'co_red').show()
+el.css('opacity', '0.2')
+// el.css('color', 'blue')
+
+var fn = function (i, item) { $console('1'); }
+el.addEvent('click', fn);
+// el.removeEvent('click', fn);
+
+</script>
+</body>
+</html>

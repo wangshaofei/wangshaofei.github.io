@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>DEMO</title>
+<style>
+    * {margin:0px;padding:0px;}
+    body {font:400 14px/18px arial;padding:20px;}
+
+</style>
+</head>
+<body>
+
+<script type="text/javascript">
+    var ua = window.navigator.userAgent ,
+        regM  = /(\w)\/(\d+)/i,
+        regMG = /(\w)\/(\d+)/gi,
+        regE  = /(\w)\/(\d+)/i,
+        regEG = /(\w)\/(\d+)/gi,
+        ret = {} ;
+    ret.m = ua.match(regM);
+    ret.mg = ua.match(regMG);
+    ret.e = regE.exec(ua);
+    ret.eg = regEG.exec(ua);
+
+    console.log('ua', ua) ;
+
+    // match
+    // 如果没有g标志，返回的是null或包含第一个匹配项和子表达式的数组; 返回index和input,index为匹配项的第一个位置
+    // 如果有g标志，则无视子表达式;返回的是null或包含所有匹配项的数组;不会返回index和input
+
+    // exec
+    // 和g无关，都只匹配一次，返回匹配项和子表达式，返回index和input(和不带g标志的match相同)
+    // 循环执行的时候需要重置reg的lastIndex
+        // chunker.exec("");
+        // m = chunker.exec(soFar);
+    console.log(ret) ;
+
+    
+</script>
+
+</body>
+</html>

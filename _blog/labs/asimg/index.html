@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="description" content="html5 css sprite tool " />
+<title>ASimg</title>
+<link rel="stylesheet" type="text/css" href="http://ikitty.github.io/labs/nice-ui.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="http://ikitty.github.io/static/jq.js"></script>
+</head> 
+<body>
+
+<div class="main_cont">
+    <div class="tool">
+        <!--S mode choose -->
+        <div class="tool_mode">
+            <a href="javascript:;" id="bintree" class="js_packer_btn nice_btn nice_btn_primary">水平</a>
+            <a href="javascript:;" id="vertical" class="js_packer_btn nice_btn nice_btn_primary">竖直</a>
+            <a href="javascript:;" id="Minimize" class="js_packer_btn nice_btn nice_btn_primary">紧凑</a>
+            <a href="javascript:;" id="bintreeGrow" class="hide nice_btn nice_btn_primary">BinTree</a>
+        </div>
+        <!--E mode choose -->
+
+        <!--S btns -->
+        <div class="tool_btn">
+            <a href="javascript:;" id="make" class="create_btn nice_btn nice_btn_success">Create Img and CSS</a>
+            <a href="javascript:;" id="export_workspace" class="nice_btn nice_btn_primary" download="export.json">Export Config</a>
+            <a href="javascript:;" id="setCssTemplate" class="nice_btn " >CSS Template</a>
+        </div>
+        <!--E btns -->
+    </div>
+
+    <div class="nice_g">
+        <!--S main -->
+        <div class="nice_u_1">
+            <div class="tool_core">
+                <div id="canvasArea" class="canvas_area">
+                    <canvas id="canvas" class="canvas_main"> You browser does not support the canvas elements.  </canvas>
+                    <canvas id="zoom_canvas" class="canvas_zoom"> You browser does not support the canvas elements.  </canvas>
+                </div>
+
+                <!--S result -->
+                <div id="result" class="result">
+                    <div class="ret_hd">
+                        <a id="png_link" class="ret_img_btn nice_btn nice_btn_success" download="sprite.png" href="javascript:;">下载图片</a>
+                        <a id="retCanvas" class="ret_to_canvas nice_btn nice_btn_warning" title="返回重新操作" href="javascript:;">&times;</a>
+                    </div>
+                    <div class="ret_bd">
+                        <div id="img" class="ret_img"></div>
+                    </div>
+
+                    <div class="ret_hd hide">
+                        <a id="css_link" class="nice_btn nice_btn_success" download="style.css" href="javascript:;">Download CSS</a>
+                    </div>
+                    <div class="ret_bd_code">
+                        <pre id="target_css" class="ret_css"></pre>
+                        
+                        <div id="copyBtn" class="nice_btn nice_btn_success copy_btn">
+                            复制代码
+                            <embed src="cp.swf" name="copySwf" type="application/x-shockwave-flash" width="150" height="50" quality="high" wmode="transparent" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+                            <span id="copyShadow" class="copy_shadow"></span>
+                        </div>
+                    </div>
+                </div>
+                <!--E result -->
+            </div>
+
+        </div>
+        <!--E main -->
+
+        <!--S extra part -->
+        <div class="hide">
+            <div class="asimg_side">
+                <!--S canvas size  -->
+                <fieldset class="hide">
+                    <h6>Canvas sizes</h6>
+                    <div class="control-group">
+                        <label class="control-label">Canvas width</label>
+                        <div class="controls docs-input-sizes">
+                            <input class="input-small" type="text" placeholder='' id="canvas_width" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Canvas Height</label>
+                        <div class="controls docs-input-sizes">
+                            <input class="input-small" type="text" placeholder='' id="canvas_height" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="canvas_sizes_apply">Apply changes</button>
+                    </div>
+                </fieldset>
+                <!--E canvas size  -->
+
+                <!--S zoom -->
+                <fieldset class="hide">
+                    <h6>Zoom setting</h6>
+                    <div class="control-group">
+                        <label class="control-label">Zoom mode</label>
+                        <div class="controls">
+                            <div class="btn-group" id="zoom_factors">
+                                <button class="btn btn-primary" id="1x">1X</button>
+                                <button class="btn btn-primary" id="2x">2X</button>
+                                <button class="btn btn-primary" id="4x">4X</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Zoom raduis</label>
+                        <div class="controls docs-input-sizes">
+                            <input class="input-small" type="text" placeholder='' id="zoom_setting_value" />
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="zoom_setting_apply">Apply changes</button>
+                    </div>
+                </fieldset>
+                <!--E zoom -->
+
+                <!--S magnet -->
+                <fieldset class="hide">
+                    <h6>Magnet setting</h6>
+                    <div class="control-group">
+                        <label class="control-label">Magnet</label>
+                        <div class="controls">
+                            <button class="btn btn-primary" id="magnet">Magnet!</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">Magnet distance</label>
+                        <div class="controls docs-input-sizes">
+                            <input class="input-small" type="text" placeholder='' id="magnet_setting_value"/>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary" id="magnet_setting_apply">Apply changes</button>
+                    </div>
+                </fieldset>
+                <!--E magnet -->
+            </div>
+        </div>
+        <!--E extra part -->
+    </div>
+</div>
+
+<!--S css template -->
+<div id="css_html_template" class="css_template">
+    <div id="cssTemplateX" class="css_template_x">&times;</div>
+    <form class="nice_form nice_form_aligned">
+        <div class="nice_control_group">
+            <label>雪碧图路径</label><input id="absolute_path" type="text" placeholder="" class="nice_input_1_2">
+        </div>
+        <div class="nice_control_group">
+            <label>模版内容</label><textarea class="nice_input_1_2" id="css_template" rows="10"></textarea>
+        </div>
+        <div class="nice_controls">
+            <a id="css_template_apply" href="javascript:;" class="nice_btn nice_btn_primary ">Apply</a>&nbsp;&nbsp;
+            <a id="css_template_reset" href="javascript:;" class="nice_btn ">Reset</a>
+        </div>
+    </form>
+</div>
+<!--E css template -->
+
+<!--S 复制 -->
+
+<p id="copyRet" class="copy_ret">复制成功啦 ^-^ </p>
+<!--E 复制 -->
+
+<script type="text/javascript" src="asimg.js"></script>
+</body>
+</html>

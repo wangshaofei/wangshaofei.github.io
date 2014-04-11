@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="colinivy" />
+<title> Colinivy's Test Page</title>
+<style type="text/css">
+	* {margin:0; padding:0; list-style:none; }
+	body {font:normal 12px/23px Verdana;padding: 20px;background-color: #FFF;}
+	
+    .bannerWrap {position:relative;margin: 20px;width: 400px;height: 300px;border: 2px solid #999;}
+    .bannerWrap img {display: block;}
+    .bannerWrap .shadow {position:absolute;z-index:2;top: 0px;left: 0px;width: 400px;height: 300px;background-color: #FFF;filter:alpha(opacity=100);opacity:1 ;color: #666;text-align: center;line-height: 300px; }
+    .bannerWrap .banners {overflow: hidden;height: 300px;}
+    .bannerWrap .banners li {display: none;}
+    .bannerWrap .controller {position:absolute;z-index:3;right: 5px;bottom: 5px;}
+    .bannerWrap .controller li {margin-left: 5px;float:left;padding: 0 6px;border: 1px solid #333;background-color: #fff;text-decoration: none;cursor: pointer;}
+    .bannerWrap .controller li.active {background-color: #333;color: #fff;} 
+    .bannerWrap .controller li.current {background-color: #555;color: #fff;}
+</style>
+<script type="text/javascript" src="file:///d:/tool/develop/editplus/colinivy/debug.js"></script>
+</head>
+<body>
+
+<div id="bannerWrap" class="bannerWrap">
+    <ul id="banners" class="banners">
+        <li><img src="banner1.jpg" alt="哈哈这是图一描述" /></li>
+        <li><img src="banner2.jpg" alt="嘿嘿这是图二描述" /></li>
+        <li><img src="banner3.jpg" alt="哼哼这是图三描述" /></li>
+        <li><img src="banner4.jpg" alt="呵呵这是图四描述" /></li>
+    </ul>
+    <div id="shadow" class="shadow">Loading...</div>
+    <ul id="controller" class="controller">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var get = function (e) {return document.getElementById(e);} ;
+    
+    var Class = {
+        create: function () {
+            return function () {
+                this.init.apply(this, arguments);
+            } ;
+        }
+    } ;
+    var FadeImg = Class.create() ;
+    FadeImg.prototype = {
+        config: {
+            elWrap: '',
+            imgs: [],
+            elCtrl: [],
+            elShadow: '',
+            autoPlay: 1,
+            lastImgIndex: 0,  //上一个图片在数组中的下标
+            currentImgIndex: null,  //点击按钮时，当前图片在数组中的下标
+            step: 10,  //单次切换的setTimeout参数
+            delay: 1500,  //banner切换间隔时间
+            opacity: 0,
+            slideStatus: 'plus',  //切换时遮罩的颜色变化状态 [plus 变深 minus 变浅]
+            stSlide: null,  //保存setTimeout事件
+            siSlide: null   //保存setInterval事件
+        },
+        init: function () {
+            this.merge(this.config, arguments[0] || {});
+            this.extend(arguments[1]);
+            if (!this.config.imgs.length || !this.config.elShadow || !this.config.elCtrl.length) return false ;
+
+            this.config.elShadow.innerHTML = '' ;
+            this.config.elShadow.style.cssText = 'filter:alpha(opacity=0);opacity:0 ;background:#000;' ;
+            this.config.imgs[0].style.display = 'block' ;
+            this.config.elCtrl[0].className = 'current' ;
+            this.bindCtrl();
+            this.run();
+
+            var self = this ;
+            this.config.elWrap.onmouseover = function () {
+                clearInterval(self.config.siSlide);
+            } ;
+            this.config.elWrap.onmouseout = function () {
+                clearInterval(self.config.siSlide);
+                self.run();
+            } ;
+            //test
+            this.begin = + new Date() ;
+        },
+        merge: function (A, B) {
+            for (var i in B) {
+                A[i] = B[i] ;
+            }
+        },
+        extend: function (v) {
+            for (var i in v) {
+                this[i] = v[i] ;
+            }
+        },
+        changeScope: function (type, o, fn ,delay) {
+            if (type == 'st'){
+                this.config.stSlide = setTimeout(function () {fn.call(o);}, delay);
+            }else if (type == 'si'){
+                this.config.siSlide = setInterval(function () {fn.call(o);}, delay);
+            }
+        },
+        run: function () {
+            if (this.config.autoPlay){
+                this.changeScope('si', this, this.slideOpacity, this.config.delay);
+            }
+        },
+        bindCtrl: function () {
+            var self = this ;
+            for (var i = 0, k ; k = this.config.elCtrl[i] ; i++ ) {
+                k.index = i ;
+                k.onmouseover = function () {
+                    clearTimeout(self.config.stSlide);
+                    clearInterval(self.config.siSlide) ;
+
+                    self.config.currentImgIndex = this.index ;
+                    self.slideOpacity();
+                    //self.run();
+                } ;
+            }
+        },
+        setOpacity: function (el, n) {
+            if (/msie/.test(window.navigator.userAgent.toLowerCase())){
+                el.style.filter="alpha(opacity="+n+")";
+            }else {
+                el.style.opacity=(n/100);
+            }
+        },
+        slideOpacity: function () {
+            this.setOpacity(this.config.elShadow, this.config.opacity);
+            if (this.config.slideStatus == 'plus'){
+                if (this.config.opacity < 80){
+                    this.config.opacity += 5 ;
+                }else {
+                    this.config.opacity = 80 ;
+                    this.config.slideStatus = 'minus' ;
+                    this.toggleImg(this.config.currentImgIndex);
+                    this.config.currentImgIndex = null ;
+                }
+            }else if (this.config.slideStatus == 'minus'){
+                if (this.config.opacity > 0){
+                    this.config.opacity -= 5 ;
+                }else {
+                    this.config.opacity = 0 ;
+                    this.config.slideStatus = 'stop' ;
+                }
+            }
+
+            if (this.config.slideStatus != 'stop'){
+                this.changeScope('st', this, this.slideOpacity, this.config.step);
+            }else {
+                this.config.slideStatus = 'plus' ;
+            }
+        },
+        toggleImg: function (i) {
+            //test
+            var re = (+ new Date())- this.begin ;
+            this.begin = + new Date() ;
+            tcDebug.run(re);
+
+            this.config.imgs[this.config.lastImgIndex].style.display = 'none' ;
+            this.config.elCtrl[this.config.lastImgIndex].className = '' ;
+
+            i = (i != null)? i: this.config.lastImgIndex + 1 ;
+            i = (!this.config.imgs[i])? 0: i ;
+
+            this.config.imgs[i].style.display = 'block' ;
+            this.config.elCtrl[i].className = 'current' ;
+            this.config.lastImgIndex = i ;
+        }
+    } ;
+    
+    var config = {
+        elWrap: get('bannerWrap'),
+        imgs: get('banners').getElementsByTagName('li'),
+        elShadow: get('shadow'),
+        elCtrl: get('controller').getElementsByTagName('li'),
+        autoPlay: 1
+    } ;
+
+    window.onload = function () {
+        var myFadeImg = new FadeImg(config) ;
+    } ;
+    
+
+
+//]]>
+</script>
+</body>
+</html>

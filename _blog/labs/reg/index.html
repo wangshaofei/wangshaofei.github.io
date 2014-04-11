@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title> new document </title>
+<meta name="author" content="Pnuts Cotton Candy" />
+</head>
+<body>
+
+<textarea id="inputArea" style="width:100%"></textarea>
+<div><input id="button" type="button" value="Analyse Regex" /></div>
+<div id="outputArea"></div>
+<script type="text/javascript" src="./regAnalysis.js"></script>
+<script type="text/javascript">
+    var button = document.getElementById("button");
+    var input = document.getElementById("inputArea");
+    var output = document.getElementById("outputArea");
+
+    button.onmouseup = function(){
+        output.innerHTML = "";
+        output.appendChild(regexAnalysis.getDOM(input.value));
+    }
+
+    input.value = /((?:\((?:\([^()]+\)|[^()]+)+\)|\[(?:\[[^[\]]{0,*}\]|['"][^'"]*['"]|[^[\]'"]+)+\]|\\.|[^+~,(\[\\]+)+|[>+~])(\s*,\s*)?((?:.|\r|\n)*)/g;
+    button.onmouseup();
+</script>
+
+</body>
+</html>
