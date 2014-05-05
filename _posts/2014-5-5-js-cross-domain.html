@@ -1,0 +1,18 @@
+---
+layout: default
+title: javascript处理跨域的方法
+
+---
+<h2>{{ page.title }}</h2>
+<p>
+
+看你的意思好像是那个iframe是本域的，但表单的action是外域的。所以你才可以用JQuery操作表单。
+如果是这种情况的话你的表单完全没必要在iframe中只需将表单的target换成你的iframe的名称就可以了。
+至于如何取得提交后的数据，需要另一个域做配合，有几种方式可供选择：
+1. 提交完成后在返回页面中通过postMessage把数据发送给你（ie8+ ）
+2. 提交完成后把返回给你的数据写到window.name中，然后再跳转到你的页面，这样你就可以读取了
+3. 提交完成后把返回数据编码后修改iframe的hash值比如：location.hash="helloworld!"这样你就可以
+   通过扫描或onhashchang事件获得
+</p>
+<p>{{ page.date | date_to_string }}</p>
+
