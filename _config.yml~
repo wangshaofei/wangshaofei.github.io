@@ -2,6 +2,3 @@ safe: true
 lsi: false
 source: _source
 destination: _deploy
-include: _include
-timezone: Asia/Chongqing
-encoding: utf-8
