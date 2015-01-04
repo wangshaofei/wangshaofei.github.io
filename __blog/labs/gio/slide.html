@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="theme/css/app.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+<!-- <slide class="logoslide nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo.png"></span>
+  </article>
+</slide>
+ -->
+<slide class="title-slide segue nobackground">
+  <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+  <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+  <hgroup class="auto-fadein">
+    <h1 data-config-title><!-- populated from slide_config.json --></h1>
+    <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+    <p data-config-presenter><!-- populated from slide_config.json --></p>
+  </hgroup>
+</slide>
+
+
+<slide class="image" >
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article class="flexbox vcenter"><p><img alt="markdown" src="images/md.jpeg" /></p></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>1. Markdown是什么？</h2>
+      <h3>&nbsp;</h3>
+    </hgroup>
+  
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Markdown简介</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>Markdown是由John Gruber和Aaron Swartz创造的一种轻量级的<strong>标记语言</strong> ;</li>
+<li>它允许用户使用<strong>易读易写</strong>的纯文本编写文档；</li>
+<li>也可以<strong>方便转换</strong>成HTML、PDF或其他格式的文档</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>2. 为什么推荐Markdown</h2>
+      <h3>&nbsp;</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  style="background-image: url(images/wps.jpg)">
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Markdown的优点</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>纯文本，兼容性强</li>
+</ul></article>
+ 
+</slide>
+
+<slide  style="background-image: url(images/formatC.jpg)">
+  
+    <hgroup>
+      <h2></h2>
+      <h3></h3>
+    </hgroup>
+    <article ></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Markdown的优点</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>纯文本，兼容性强</li>
+<li>让用户更专注于内容，提升效率</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Markdown的优点</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul>
+<li>纯文本，兼容性强</li>
+<li>让用户更专注于内容，提升效率</li>
+<li>易写、易读</li>
+<li>格式转换方便</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="big" >
+  
+    <hgroup>
+      <h2>Markdown的应用场景</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>Github gist</li>
+<li>StackOverflow、cNodeJs</li>
+<li>Blog with jekyll</li>
+<li><a href="http://trunk.yinxiang.com/app/maxiang/web-apps/">Evernote</a></li>
+<li>Slide show</li>
+</ul></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>3. Markdown VS HTML</h2>
+      <h3>&nbsp;</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown VS HTML</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>markdown不是要取代HTML，只对应HTML标记的一部分</li>
+<li>markdown让HTML书写起来更方便</li>
+<li>markdown<strong>兼容HTML</strong>，但HTML区块内的markdown标记不会被解析</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown VS HTML</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>markdown标记和HTML混搭书写：</p>
+<pre><code>##刀锋铁骑2014即将开战
+
+&lt;table &gt;
+    &lt;tr&gt;
+        &lt;th&gt;服务器&lt;/th&gt;
+        &lt;th&gt;大区&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;状态-良好&lt;/td&gt;
+        &lt;td&gt;状态-拥挤&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+刀锋铁骑&lt;strong&gt;专业大师团&lt;/strong&gt;赏析
+</code></pre></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>4.1 Markdown语法</h2>
+      <h3>块级元素的描述</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法说明</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>markdown的宗旨是为了让文档易读易写，所以其语法标记符号都是经过精心挑选，其作用一目了然：</p>
+<ul class="build">
+<li>比如用一对*包含起来的内容，看起来就像是要强调某个事物；</li>
+<li>尖括号后面跟随的内容就是引用的内容。</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 段落和换行</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>一个Markdown段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行；</li>
+<li>若要通过 Markdown 来插入 <code>&lt;br/&gt;</code> 标签的话，在插入处先按入两个以上的空格然后回车。</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 段落和换行</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre><code>这是一个段落
+
+这是另一个段落
+</code></pre>
+<p>转换成HTML的结果是：</p>
+<pre><code>&lt;p&gt;这是一个段落&lt;/p&gt;
+
+&lt;p&gt;这是另一个段落&lt;/p&gt;
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 标题</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Markdown支持两种标题语法，类<code>setext</code>和类<code>atx</code>形式:
+- 类<code>Setext</code>形式是用底线的形式，利用任意数量的= （最高阶标题）和- （第二阶标题），如：</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 标题</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="markdown">
+
+这是一级标题
+=============
+
+
+这是二级标题
+-------------
+
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 标题</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>类<code>Atx</code>形式则是在标题前面插入适量的"#"，1 至 6 个 "#"表示一级至六级标题，如：</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 标题</h2>
+      <h3>&nbsp;</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="markdown">
+#一级标题
+
+##二级标题
+
+###三级标题
+
+####四级标题
+
+#####五级标题
+
+######六级标题
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 列表</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>Markdown支持无序列表和有序列表</li>
+<li>无序列表的标记为减号(<code>-</code>)、加号(<code>+</code>)或星号(<code>*</code>)</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 列表</h2>
+      <h3>&nbsp;</h3>
+    </hgroup>
+    <article ><pre class="prettyprint" data-lang="markdown">
+- 英雄联盟
+- 刀锋铁骑
+- 天涯明月刀
+</pre>
+
+<pre class="prettyprint" data-lang="markdown">
++ 英雄联盟
++ 刀锋铁骑
++ 天涯明月刀
+</pre>
+
+<pre class="prettyprint" data-lang="markdown">
+* 英雄联盟
+* 刀锋铁骑
+* 天涯明月刀
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 列表</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>有序列表则使用数字接着一个点号(<strong>这里的数字不会影响实际的输出</strong>)，如：</p>
+<pre class="prettyprint" data-lang="markdown">
+1. 英雄联盟
+2. 刀锋铁骑
+3. 天涯明月刀
+</pre>
+
+<pre class="prettyprint" data-lang="markdown">
+4. 英雄联盟
+1. 刀锋铁骑
+9. 天涯明月刀
+</pre>
+
+<pre class="prettyprint" data-lang="markdown">
+6. 英雄联盟
+9. 刀锋铁骑
+6. 天涯明月刀
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 列表</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>上面三段代码的装换成HTML的结果都是：</p>
+<pre><code>&lt;ol&gt;
+    &lt;li&gt;英雄联盟&lt;/li&gt;
+    &lt;li&gt;刀锋铁骑&lt;/li&gt;
+    &lt;li&gt;天涯明月刀&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 混排</h2>
+      <h3>列表中包含多个段落</h3>
+    </hgroup>
+    <article ><p>有时候列表项中的内容比较复杂，包含多个段落。我们只需将每个项目下的段落都缩进4个空格或是 1 个制表符：</p>
+<pre><code>1.  刀锋铁骑账号注册
+
+    乙方承诺以其真实身份注册成为甲方的用户，并保证所提供的个人身份资料信息真实、完整、有效
+
+    乙方以其真实身份注册成为甲方用户后，需要修改所提供的个人身份资料的，甲方应当及时提供该服务。
+
+2.  用户账号使用与保管
+
+    根据必备条款的约定，甲方有权审查乙方注册所提供的身份信息是否真实，并应积极地采取措施保障用户账号安全；
+
+    乙方对登录后所持账号产生的行为依法享有权利和承担责任。
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 混排</h2>
+      <h3>列表中包含多个段落</h3>
+    </hgroup>
+    <article ><pre><code>&lt;ol&gt;
+    &lt;li&gt;
+        &lt;p&gt;刀锋铁骑账号注册 &lt;/p&gt;
+        &lt;p&gt;乙方承诺以其真实身份注册成为甲方的用户，并保证所提供的个人身份资料信息真实、完整、有效&lt;/p&gt;
+        &lt;p&gt;乙方以其真实身份注册成为甲方用户后，需要修改所提供的个人身份资料的，甲方应当及时提供该服务。&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;p&gt;用户账号使用与保管&lt;/p&gt;
+        &lt;p&gt;根据必备条款的约定，甲方有权审查乙方注册所提供的身份信息是否真实，并应积极地采取措施保障用户账号安全；&lt;/p&gt;
+        &lt;p&gt;乙方对登录后所持账号产生的行为依法享有权利和承担责任。&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 代码块</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Markdown 中建立代码区块很简单，只要简单地缩进 4 个空格或是 1 个制表符即可。这个代码区块会持续到没有缩进的那一行</p>
+<pre class="prettyprint" data-lang="markdown">
+这是普通段落
+
+    /**
+     * getSth
+     **/
+    var getSth = function () {
+        return arguments ;
+    }
+</pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 代码块</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><pre><code>&lt;p&gt;这是普通段落&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/**
+ * getSth
+ **/
+var getSth = function () {
+    return arguments ;
+}
+&lt;/code&gt;&lt;/pre&gt;
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 引用</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>只需在整个段落的第一行最前面加上 "&gt;" 即可，引用可以嵌套，也可以内嵌其他markdown标记</p>
+<pre><code>&gt; 长枪依在，即将凯旋
+&gt; 一点寒芒先到，随后枪出如龙
+&gt; **德邦总管-赵信**
+
+&gt; 即使敌众我寡，末将也能万军从中取敌将首级
+  德玛西亚人从不退缩
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 分割线</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>在一行中用三个以上的星号、减号、下划线来建立一个分隔线，行内不能有其他东西。下面每种写法都可以建立分隔线：</p>
+<pre><code>***
+
+*****
+
+___
+
+--------
+</code></pre></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>4.2 Markdown语法</h2>
+      <h3>行内元素的描述</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 链接</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>Markdown 支持<strong>行内式</strong>和<strong>定义式</strong>两种链接语法，行内式格式：</p>
+<pre><code>[链接文本](链接地址 "可选的title")
+</code></pre>
+<p>实例：</p>
+<pre><code>这个链接指向[刀锋铁骑](http://t7.qq.com/ "前往刀锋铁骑官网")
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 链接</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>定义式即在文件的任意处定义链接，然后在使用的时候指定对应的id即可，格式：</p>
+<pre><code>[id]: 链接地址 "可选的title"
+[链接文本][id]
+</code></pre>
+<p>实例：</p>
+<pre><code>[id]: http://t7.qq.com "前往刀锋铁骑官网"
+
+点击[刀锋铁骑][id]浏览网站
+</code></pre>
+<p><strong>tips</strong>: 如果一个页面中多次用到同样的链接，建议使用定义式。</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 图片</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>和链接一样，图片也允许行内式和定义式，格式在链接前面多了一个"!"</p>
+<pre><code>![logo](http://ossweb-img.qq.com/images/t7/act/a20131120exp/s1_logo.jpg "这是刀锋铁骑Logo")
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 图片</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>其参考式也和链接一样：</p>
+<pre><code>[id]: http://ossweb-img.qq.com/images/t7/act/a20131120exp/s1_logo.jpg "这是刀锋铁骑Logo"
+
+![刀锋铁骑Logo][id]
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 强调</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>使用星号（*）和下划线（_）作为标记强调字词的符号，被 * 或 _ 包围的字词会被转成用 <code>&lt;em&gt;</code> 标签包围，用两个 * 或 _ 包起来的话，则会被转成 <code>&lt;strong&gt;</code>，例如：</p>
+<pre><code>*小哥哥强暴走了*
+_让老夫玩玩也暴走了_
+
+**寒冰射手已经超神了**
+__Yikuzuo已经主宰比赛了__
+</code></pre>
+<p><strong>tips</strong>: 但是如果你的 * 和 _ 两边都有空白的话，它们就只会被当成普通的符号。</p></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 行内代码</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：</p>
+<pre><code>这是个 `&lt;div&gt;` 标记.
+</code></pre>
+<p>转换成HTML的结果是：</p>
+<pre><code>&lt;p&gt;这是个&lt;code&gt;&lt;div&gt;&lt;/code&gt; 标记.&lt;/p&gt;
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 反转义</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>如果你想使用markdown标记的自身的值，可以使用"\"来反转义markdown标记，如：</p>
+<pre><code>\*刀锋铁骑\*
+</code></pre></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown语法 - 反转义</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><p>markdown支持以下这些符号前面加上反斜杠来帮助插入普通的符号：</p>
+<pre><code>\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+</code></pre></article>
+ 
+</slide>
+
+<slide class="segue dark" >
+  
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h2>5. markdown辅助工具</h2>
+      <h3>&nbsp;</h3>
+    </hgroup>
+  
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>Markdown辅助工具</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>编辑器类<ul class="build">
+<li><a href="http://mouapp.com/">Mou for mac</a></li>
+<li>MarkdownPad for windows</li>
+<li>MarkPad for windows</li>
+<li>ReText for Linux</li>
+</ul>
+</li>
+<li>工具类<ul class="build">
+<li><a href="http://johnmacfarlane.net/pandoc/">Pandoc</a></li>
+<li><a href="http://softwaremaniacs.org/playground/showdown-highlight/">Showdown</a></li>
+<li>Markable.in online</li>
+<li>Dillinger.io online</li>
+<li>Dingus online</li>
+</ul>
+</li>
+</ul></article>
+ 
+</slide>
+
+<slide  >
+  
+    <hgroup>
+      <h2>总结</h2>
+      <h3></h3>
+    </hgroup>
+    <article ><ul class="build">
+<li>markdown简介</li>
+<li>markdown的优点和应用场景</li>
+<li>markdown和HTML的关系</li>
+<li>markdown语法介绍和示例</li>
+<li>markdown辅助工具</li>
+</ul></article>
+ 
+</slide>
+
+
+<slide class="thank-you-slide segue nobackground">
+  <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+  <article class="flexbox vleft auto-fadein">
+    <h2>&lt;Thank You!&gt;</h2>
+    <!--<p>Important contact information goes here.</p>-->
+    <p>Alextang@tencent.com</p>
+  </article>
+  <p class="auto-fadein" data-config-contact>
+    <!-- populated from slide_config.json -->
+  </p>
+</slide>
+
+<!-- <slide class="logoslide dark nobackground">
+  <article class="flexbox vcenter">
+    <span><img src="images/google_developers_logo_white.png"></span>
+  </article>
+</slide> -->
+
+<slide class="backdrop"></slide>
+
+</slides>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

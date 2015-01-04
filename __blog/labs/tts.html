@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ZH-cn">
+<head>
+<meta charset="utf-8" />
+<title>TTS demo</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<style type="text/css" media="screen">
+    .tts_text {width:200px;margin:15px auto;padding:10px 10px;cursor:pointer;border:2px solid #09f;}
+</style>
+</head>
+
+
+<div class="tts_text" data-engine="bd" data-lang="zh" data-tts="加油哦 小伙子">
+    zh-bd  hover me !
+</div>
+<div class="tts_text" data-engine="bd" data-lang="en" data-tts="Come on baby">
+    en-bd
+</div>
+<div class="tts_text" data-engine="gg" data-lang="zh" data-tts="加油哦 小伙子">
+    zh-g
+</div>
+<div class="tts_text" data-engine="gg" data-lang="en" data-tts="Come on baby">
+    en-g
+</div>
+
+<script type="text/javascript">
+    var createAu = function () {
+        if (!document.getElementById('audioPlayer')) {
+            var el = document.createElement('audio');
+            el.autoplay = 'autoplay';
+            el.id = 'audioPlayer';
+            document.body.appendChild(el) ;
+        }
+        return document.getElementById('audioPlayer') ;
+    };
+    var invokeAu = function (obj) {
+        var au = createAu(),
+            src = '';
+        if (obj.engine && obj.engine === 'bd') {
+            src = 'http://tts.baidu.com/text2audio?lan=' + obj.lang + '&ie=UTF-8&text=' + obj.q ;
+        }else {
+            src = 'http://translate.google.cn/translate_tts?ie=UTF-8&tl=' + obj.lang + '&q=' + obj.q ;
+        }
+        au.src = src ;
+    };
+
+    $(function () {
+        $('.tts_text').mouseenter(function () {
+            var au = createAu();
+            var self = $(this);
+            var txt = self.data('tts');
+            invokeAu({
+                'engine': self.data('engine'),
+                'lang': self.data('lang'),
+                'q': self.data('tts')
+            });
+
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

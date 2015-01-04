@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>衣长比较</title>
+<link rel="stylesheet" href="css/style.css" media="screen" />
+<script type="text/javascript" src="js/jq.js"></script>
+<script type="text/javascript" src="js/alex.js"></script>
+<script type="text/javascript" src="js/hugo.js"></script>
+</head>
+<body>
+	<div class="ui">
+		<div class="ui_hd" style="display:none">
+			<button type="button" class="btn_close">关闭</button>
+		</div>
+
+		<div class="ui_bd">
+			<!-- 绘图容器 S -->
+			<div class="ui_canvas" id="canvasWrap">
+				<canvas id="dressCanvas" class="dress_canvas"></canvas>
+
+				<div class="ui_coursoal" id="stepNumber">
+					<span class="on">1</span><span>2</span>
+				</div>
+			</div>
+			<!-- 绘图容器 E -->
+
+			<!-- 对比指引 开始 -->
+			<div class="ui_guide">
+				<div id="js_content" class="ui_guide_inner clearfix">
+					<!-- 第一步 开始 -->
+					<div class="ui_guide_item">
+						<!--
+						<ul id="js_tabs" class="tabs clearfix">
+							<li><a href="#tab1" class="selected">我的衣柜</a></li>
+							<li><a href="#tab2">手工录入</a></li>
+						</ul>
+						-->
+
+						<div id="tab2" data-type="base" class="form_entry">
+							<h2 class="form_tit">请输入您的上衣尺寸</h2>
+							<ul class="form_write clearfix">
+								<li><p><span>衣长</span><input type="range" min="55" max="65" value="60"/><input data-name="nagasa" type="text" value="60"/> <span class="c_tx2">cm</span></p></li>
+								<li><p><span>肩宽</span><input type="range" min="35" max="45" value="40"/><input data-name="shoulder" type="text" value="40"/> <span class="c_tx2">cm</span></p></li>
+								<li><p><span>腰围</span><input type="range" min="75" max="100" value="80"/><input data-name="waist" type="text" value="80"/> <span class="c_tx2">cm</span></p></li>
+								<li><p><span>袖长</span><input type="range" min="53" max="63" value="58"/><input data-name="sleeve" type="text" value="58"/> <span class="c_tx2">cm</span></p></li>
+							</ul>
+						</div>
+					</div>
+					<!-- 第一步 结束 -->
+
+
+					<!-- 第二步 开始 -->
+					<div class="ui_guide_item">
+						<div class="form_entry">
+							<h2 class="form_tit">请输入您想对比的上衣尺寸</h2>
+							<ul id="js_user" data-type="custom" class="form_write clearfix">
+								<li><p><span>衣长</span><input type="range" min="55" max="65" /><input data-name="nagasa" type="text" value="60"/> <span class="c_tx2">cm</span></p></li>
+								<li><p><span>肩宽</span><input type="range" min="35" max="45" /><input data-name="shoulder" type="text" value="38"/> <span class="c_tx2">cm</span></p></li>
+								<li><p><span>腰围</span><input type="range" min="75" max="100" /><input data-name="waist" type="text" value="80"/> <span class="c_tx2">cm</span></p></li>
+								<li><p><span>袖长</span><input type="range" min="53" max="63" /><input data-name="sleeve" type="text" value="60"/> <span class="c_tx2">cm</span></p></li>
+							</ul>
+						</div>
+					</div>
+					<!-- 第二步 结束 -->
+				</div>
+			</div>
+			<!-- 对比指引 结束 -->
+
+			<!-- 我的衣柜 开始 -->
+			<div class="btn_fav" id="triggerFav">
+				<a href="#" title="我的衣柜">我的衣柜</a>
+			</div>
+			<div id="contFav" class="pop_fav" style="display:none">
+				<ul class="clearfix">
+					<li><a href="#" title="TOAIOU 卓欧 2012冬装新款 甜美花边糖果色羽绒服女装羽绒外套D207026 黑色"><img src="img/2.jpg" data-nagasa="52" data-shoulder="34.5" data-waist="94" data-sleeve="67" /></a></li>
+					<li><a href="#" title="森马 冬装新品女款甩帽时尚两面色羽绒服 女原价299元10132411001(本白,XL) "><img src="img/3.jpg" data-nagasa="52" data-shoulder="36.6" data-waist="90" data-sleeve="58.4" alt="图片描述" /></a></li>
+					<li><a href="#" title="卓欧冬装新款 宽松韩版双排扣羊绒大衣七分袖毛呢外套女WD211026"><img src="img/4.jpg" data-nagasa="74.5" data-shoulder="39" data-waist="110" data-sleeve="43.5" alt="图片描述" /></a></li>
+				</ul>
+			</div>
+			<!-- 我的衣柜 结束 -->
+		</div>
+
+		<!--
+		<div class="title_area" style="display:none">
+			<span class="cont" id="titleCont1">1，请填写或选择您合身的衣服尺寸</span>
+			<span class="cont" id="titleCont2" style="display:none;">2，请填写您要试用的衣服尺寸</span>
+		</div>
+		-->
+
+		<div class="ui_ft">
+			<button type="button" id="js_next"class="btn_default">下一步</button>
+			<button type="button" id="js_pre" class="btn_default btn_weaken" style="display:none">上一步</button>
+			<button type="button" id="js_done" class="btn_default" style="display:none">开始比较</button>
+		</div>
+	</div>
+
+	<div class="mask"></div>
+</body>
+</html>
+

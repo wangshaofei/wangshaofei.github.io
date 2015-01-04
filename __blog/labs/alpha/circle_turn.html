@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>DEMO</title>
+<script type="text/javascript" src="file:///d:/tool/develop/editplus/colinivy/debug.js"></script>
+<style>
+    * {margin:0;padding:0;list-style:none;font-size:12px;}
+    .wrap {position:relative;margin:200px auto;width:600px; height:400px;background-color:#eee;}
+    .wrap span
+    {position:absolute;width:80px;height:40px;background-color:#F90;text-align:center;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="wrap" id="circle">
+    <span class="item">1</span>
+    <span class="item">2</span>
+    <span class="item">3</span>
+    <span class="item">4</span>
+    <span class="item">5</span>
+    <span class="item">6</span>
+    <span class="item">7</span>
+    <span class="item">8</span>
+    <span class="item">9</span>
+    <span class="item">10</span>
+    <span class="item">11</span>
+    <span class="item">12</span>
+</div>
+<script type="text/javascript" src="circle_turn.js"></script>
+<script type="text/javascript">
+    var get = function (e) {return document.getElementById(e);} 
+    var canvas = get('circle'),
+        items = canvas.getElementsByTagName('span'),
+        len = items.length;
+
+    var PI = Math.PI ,
+        R = 300,
+        interval = 2*PI/len,
+        distance,
+        step = 0.1,
+        sTheta = 0 ,
+        eTheta = PI/2 ,
+        tmpTheta = 0 ,
+        timer,
+        flag;
+
+    var w = 600, h= 400 , wItem = 80 , hItem  = 30 ;
+
+    var init = function  () {
+        for (var i = 0, k ; k = items[i] ; i++ ) {
+            k.interval = interval*i;
+            var x = w/2 + R*Math.cos(k.interval)- wItem/2; 
+            var y = h/2 + R*Math.sin(k.interval)- hItem/2; 
+            k.style.cssText = 'top:'+y+'px;left:'+x+'px;'
+
+            k.onclick = function  () {
+                distance = eTheta - this.interval ;
+                timer = setInterval(rotate, 16);
+                eTheta = this.interval;
+            }
+        }
+    }
+
+    var rotate = function () {
+        if (distance < 0) {
+            if (Math.abs(distance) > PI) {
+                flag =1 ;
+                distance = 2*PI + distance ;
+            }else {
+                flag =0 ;
+            }
+        }else{
+            if (distance < PI) {
+                flag = 1;
+            }else {
+                flag = 0 ;
+                distance = -(2*PI - distance) ;
+            }
+        }
+
+        if (flag) {
+            sTheta += step;
+            if ((sTheta - tmpTheta) >= distance) {
+                clearInterval(timer);
+                sTheta = distance + tmpTheta ;
+                tmpTheta = sTheta ;
+            };
+        }else {
+            sTheta -= step ;
+            if ((sTheta - tmpTheta) <= distance) {
+                clearInterval(timer);
+                sTheta = distance + tmpTheta ;
+                tmpTheta = sTheta ;
+            };
+        }
+        //math their position
+        for (var i = 0, k ; k = items[i] ; i++ ) {
+            var sinX = Math.sin(sTheta + k.interval) ;
+            var cosX = Math.cos(sTheta + k.interval) ;
+            var finalW= wItem + 0.4*sinX*wItem;
+            var finalH= hItem + 0.4*sinX*hItem;
+            k.style.top = h/2 + sinX*R/2 - finalH/2+ 'px';
+            k.style.left = w/2 + cosX*R - finalW/2 +'px';
+            k.style.width = finalW + 'px' ;
+            k.style.height = finalH + 'px';
+        }
+    }
+
+    window.onload = function  () {
+        init();
+        rotate();
+    }
+
+</script>
+</body>
+</html>

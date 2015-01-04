@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<title>UA</title>
+<style>
+* {margin:0;padding:0;list-style:none;}
+</style>
+</head>
+<body>
+<p >打开控制台看结果。</p>
+<div class="ua" id="ua"> </div>
+
+<script type="text/javascript">
+    var s = 'http://ikitty.github.io/labs/jscommon.html';
+    console.debug('test string:', s) ;
+    console.debug('slice(0,x):', s.slice(0, s.lastIndexOf('/')), ' arg1 开始位置，arg2 结束的位置(不包含该位置) ') ;
+    console.debug('slice(x):', s.slice(s.lastIndexOf('/')), ' 如果省略arg2，则一直捕获到字符串结尾 ') ;
+
+    var a = ['AAA', 'BBB', 'ccc', 'ddd'];
+    console.debug('splice(index, howmuch, insert):', a.splice(1,1), a, ' 直接修改原数组，返回的是删除的值') ;
+    console.debug('splice(index, howmuch, insert):', a.splice(1,1, 'bbbAdd'), a, ' 删除指定位置的值，然后在指定的位置插入值') ;
+</script>
+</body>
+</html>

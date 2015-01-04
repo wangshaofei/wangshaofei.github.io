@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="colinivy" />
+<title> Colinivy's Test Page</title>
+<script type="text/javascript" src="file:///d:/tool/develop/editplus/colinivy/debug.js"></script>
+<style type="text/css">
+    * {margin:0; padding:0; list-style:none; }
+    body {font:normal 12px/30px Verdana;padding: 20px;background-color: #FFF;tac }
+    
+    textarea {margin-top: 10px;width: 700px;height: 300px;border: 1px solid #999;}
+    #box {margin: 10px;width: 200px;height: 100px;background-color: #F90;}
+</style>
+
+</head>
+<body>
+
+<input type="button" id="btn" value="read excel" onclick="getTopCate()" /><br />
+<textarea id="result"></textarea>
+
+<div id="box">
+   
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+    var CLASS = {
+        create: function () {
+            return function () {
+                this.init.apply(this, arguments);
+            } ;
+        }
+    } ;
+
+    var readExcel = CLASS.create() ;
+    readExcel.prototype = {
+        init: function () {
+            this.obj = false ;
+        },
+        open: function () {
+            this.obj = new ActiveXObject("Excel.Application");
+            try{
+                this.obj.wb = this.obj.Workbooks.open(filepath);
+                this.obj.sheet = this.obj.wb.Worksheets;
+                this.obj.cell = this.obj.sheet(1).Cells;
+                //ActiveSheet == Worksheets(1)
+                //oSheet.usedrange.rows.count
+            }catch(e){
+                alert('load excelFile failure');
+            }
+        },
+        close: function () {
+            this.obj.cell = null ;
+            this.obj.sheet = null ;
+            this.obj.wb.close();
+            this.obj = null ;
+        }
+    } ;
+
+    var read = new readExcel() ;
+
+    // expand method
+    read.getData = function () {
+        this.obj.result = '' ;
+        for (var i = 2, le = 12; i < le; i++ ) {
+            this.obj.result += this.format(this.obj.cell(i,1).value, this.obj.cell(i,2).value);
+        }
+        get('result').value = this.obj.result ;
+    } ;
+    read.formatDate = function (title, href) {
+        return '<li><a href="http://'+ href +'">' + title + '</a></li>\n\r' ;
+    } ;
+
+//]]>
+</script>
+</body>
+</html>

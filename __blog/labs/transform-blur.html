@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="zh-cn"><!--<![endif]-->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=800" />
+<title>易迅网首页</title>
+<style>
+.ic_nav {background-color:#1369C0;color:#fff;font:400 16px/38px "\5FAE\8F6F\96C5\9ED1",Arial;}
+.por {position:relative;}
+.porz {position:relative;z-index:1;}
+.fs {-webkit-font-smoothing:subpixel-antialiased;}
+
+.load_effect {
+    /*position:relative;z-index:2;*/
+    /*-webkit-backface-visibility: hidden;*/
+    /*-webkit-transform-style: preserve-3d;*/
+    -webkit-animation: loadEffectAnim 0.4s ease-out forwards;
+}
+
+@-webkit-keyframes loadEffectAnim {
+    0% { -webkit-transform:scale(0.7);}
+    100% { -webkit-transform:scale(1);}
+}
+
+</style>
+</head>
+<body>
+
+<div class="ic_nav">
+    <div class="">全部(没有定位)</div>
+    <div class="por">全部(相对定位)</div>
+    <div class="porz">全部(相对定位，且设置zIndex)</div>
+    <div class="porz fs">全部(相对定位，设置zIndex，设置字体平滑)</div>
+</div>
+<div class="mod_goods_img load_effect">带有包含transform的动画元素</div>
+<div class="ic_nav">
+    <div class="por">全部(相对定位)</div>
+    <div class="porz">全部(相对定位，且设置zIndex)</div>
+    <div class="porz fs">全部(相对定位，设置zIndex，设置字体平滑)</div>
+</div>
+
+</body>
+</html>

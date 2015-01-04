@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="author" content="colinivy" />
+<title> Colinivy's Test Page</title>
+<style type="text/css">
+    * {margin:0; padding:0; list-style:none; }
+    body {font:normal 12px/30px Verdana;padding: 20px;background-color: #FFF;}
+  
+    .txtTest {position:absolute;top:300px;left:300px;}
+    .txtTest2 {position:absolute;top:200px;left:600px;}
+    .txtTest2 {position:absolute;top:200px;left:600px;}
+</style>
+</head>
+<body>
+
+<!-- <div id="winCalendar" class="winCalendar">
+    <div class="close_win"><span id="btnCloseCalendar">关闭</span></div>
+    <div id="currentTime" class="currentTime">
+        <strong id="currentYear"></strong> - <strong id="currentMonth"></strong>
+        <span id="yearMinus" class="arrow leftA" title="减少年份">&laquo;</span>
+        <span id="monthMinus" class="arrow leftB" title="减少月份">&lt;</span>
+        <span id="monthPlus" class="arrow rightB" title="增加年份">&gt;</span>
+        <span id="yearPlus" class="arrow rightA" title="减少月份">&raquo;</span>
+    </div>
+    <ul class="week">
+        <li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li><li>日</li>
+    </ul>
+    <div id="days" class="days"></div>
+    <div id="time" class="time">
+        <input type="text" id="hours" value="00" maxlength="2" autocomplete="off"/><span class="interval">:</span><input type="text" maxlength="2" id="minutes" value="00" autocomplete="off"/>
+        <span id="btnOk" class="btnOk">确定</span>
+    </div>
+</div> -->
+
+<input type="text" id="txtTest" class="txtTest" value="click"/>
+<input type="text" id="txtTest2" class="txtTest2" value="click"/>
+
+<script type="text/javascript">
+//<![CDATA[
+
+    /*
+     * @module: calendar 日期组件 
+     * @author: alextang
+     * @reutrn: 2010-12-30 12:00
+     */
+
+    // 组件样式
+    var cssCalendar = '.winCalendar{z-index:60;display:none;position:fixed;_position:absolute;margin:0 auto;padding-bottom:1px;width:210px;border:1px solid #CCC;text-align:center;overflow:hidden}.winCalendar .currentTime{position:relative;margin:1px;height:28px;line-height:26px;background-color:#DDD}.winCalendar .arrow{position:absolute;top:0px;padding:2px 3px;font:700 14px/21px  simsun;cursor:pointer}.winCalendar .leftA{left:4px;font-family:verdana}.winCalendar .leftB{left:24px;line-height:24px;margin-left:2px}.winCalendar .rightA{right:4px;font-family:verdana}.winCalendar .rightB{right:24px;line-height:24px;margin-right:2px}.winCalendar .week{zoom:1;overflow:hidden;font:normal 12px/21px Verdana,Tahoma;color:#888}.winCalendar .week li{float:left;width:30px}.winCalendar .days{float:left;clear:both;font:normal 12px/28px Verdana,Tahoma}.winCalendar .days a{float:left;width:28px;height:28px;margin:1px;background-color:#EEE}.winCalendar .days a:link, .winCalendar .days a:visited{text-decoration:none;color:#014ccc}.winCalendar .days a:hover{text-decoration:none;color:blue}.winCalendar .time{position:relative;clear:both;height:27px;padding-top:5px;margin:0 1px;background-color:#ccc;font-family:tahoma}.winCalendar .time input{width:25px;height:16px;line-height:16px;padding:2px 0;background-color:#FFF;border:1px solid #999;margin:0 3px;text-align:center;vertical-align:middle}.winCalendar .time .interval{width:5px;height:16px;line-height:13px;padding:2px 0}.winCalendar .time .btnOk{position:absolute;top:5px;right:5px;width:40px;height:20px;line-height:20px;background-color:#FFF;border:1px solid #999;cursor:pointer}.winCalendar #today{color:#f00}.winCalendar .days .selected{background-color:#aaa;color:#fff}.winCalendar .close_win{margin:1px 1px 0;height:18px;overflow:hidden;line-height:18px;background-color:#EEE}.winCalendar .close_win span{float:right;background-color:#eee;color:#f60;padding:0 5px 0 0;cursor:pointer}' ;
+    document.write('<style type="text/css">'+ cssCalendar+ '</style>');
+
+    // 组件DOM结构
+    var domCalendar = '<div id="winCalendar" class="winCalendar"><div class="close_win"><span id="btnCloseCalendar">关闭</span></div><div id="currentTime" class="currentTime"><strong id="currentYear"></strong>- <strong id="currentMonth"></strong><span id="yearMinus" class="arrow leftA" title="减少年份">&laquo;</span><span id="monthMinus" class="arrow leftB" title="减少月份">&lt;</span><span id="monthPlus" class="arrow rightB" title="增加年份">&gt;</span><span id="yearPlus" class="arrow rightA" title="减少月份">&raquo;</span></div><ul class="week"><li>一</li><li>二</li><li>三</li><li>四</li><li>五</li><li>六</li><li>日</li></ul><div id="days" class="days"></div><div id="time" class="time"><input type="text" id="hours" value="00" maxlength="2" autocomplete="off"/><span class="interval">:</span><input type="text" maxlength="2" id="minutes" value="00" autocomplete="off"/><span id="btnOk" class="btnOk">确定</span></div></div>' ;
+    var elCalendarWrap = document.createElement('div') ;
+    elCalendarWrap.innerHTML = domCalendar ;
+    elCalendarWrap.setAttribute('id', 'elCalendarWrap') ;
+
+    var insertCalendar = function () {
+        var el = document.getElementById('elCalendarWrap') ;
+        if (!el){
+            document.body.appendChild(elCalendarWrap) ;
+        }
+    } ;
+    
+    // 日期组件构造函数
+    var Calendar = function (config) {
+        for (var i in arguments[0]) {
+            this[i] = arguments[0][i] ;
+        }
+    } ;
+    
+    // 日期组件原型扩展
+    Calendar.prototype = {
+        finalDate: '',
+
+        getFinalDate: function () {
+            return this.finalDate ;
+        },
+
+        display: function (cDate) {
+            var cDate = cDate || new Date() ;
+            var myDate = {
+                year: cDate.getFullYear(),
+                month: cDate.getMonth() + 1 < 10? '0'+(cDate.getMonth() + 1) :cDate.getMonth() + 1 ,
+                date: cDate.getDate()
+            } ;
+            this.finalDate = myDate.year + '-' + myDate.month + '-' + (myDate.date < 10? '0' + myDate.date : myDate.date );
+
+            this.el.year.innerHTML = myDate.year ;
+            this.el.month.innerHTML = myDate.month ;
+            
+            // get firstday position in this month
+            myDate.firstdayPos = new Date(myDate.year, myDate.month-1, 1).getDay() - 1 ;
+            myDate.firstdayPos = myDate.firstdayPos == -1? 6: myDate.firstdayPos ;
+            
+            // get maxDay in this month
+            myDate.maxDayPos = new Date(myDate.year, myDate.month, 0).getDate() + myDate.firstdayPos ;
+
+            var days = this.createDayDom();
+
+            // fill data
+            var _self = this ;
+            var last = 0 ;
+            for (var i = 0, k ; k = days[i] ; i++ ) {
+                var t ;
+                if (i < myDate.firstdayPos || i >= myDate.maxDayPos){
+                    t = ' ' ;
+                }else {
+                    t = i + 1 - myDate.firstdayPos ;
+                    k.onclick = function (t, i) {
+                        return function () {
+                            days[last].className = '' ;
+                            this.className = 'selected' ;
+                            last = i ;
+                            _self.finalDate = myDate.year + '-' + myDate.month + '-' + (t < 10? '0' + t : t );
+                        } ;
+                    }(t, i) ;
+                }
+                k.innerHTML = t ;
+                if (t == myDate.date){
+                    k.id = this.el.today ;
+                }
+            }
+        },
+
+        // create days DOM
+        createDayDom: function () {
+            var days = this.el.days.getElementsByTagName('a') ;
+            if(days.length <= 0){
+                for (var i = 0 ; i < 42  ; i++ ) {
+                    var el = document.createElement('a') ;
+                    el.setAttribute('href', 'javascript:void(0);') ;
+                    this.el.days.appendChild(el) ;
+                }
+            }else {
+                for (var i = 0, k ; k = days[i] ; i++ ) {
+                    k.className = '' ;
+                }
+            }
+
+            try {
+                document.getElementById(this.el.today).id = '' ;
+            }catch (e){}
+
+            return this.el.days.getElementsByTagName('a') ;
+        },
+
+        change: function (type) {
+            var today = document.getElementById(this.el.today) ;
+            var date = {
+                year: Number(this.el.year.firstChild.nodeValue),
+                month: Number(this.el.month.firstChild.nodeValue) - 1,
+                day: Number(today.firstChild.nodeValue) 
+            } ;
+            switch (type){
+                case 'yearPlus':
+                    date.year++ ;
+                break;
+                case 'yearMinus':
+                    date.year-- ;
+                break;
+                case 'monthPlus':
+                    date.month++ ;
+                    if (date.month > 11){
+                        date.year++ ;
+                        date.month = 0 ;
+                    }
+                break;
+                case 'monthMinus':
+                    date.month-- ;
+                    if (date.month < 0){
+                        date.year-- ;
+                        date.month = 11 ;
+                    }
+                break;
+            }
+            this.display(new Date(date.year, date.month, date.day));
+        },
+
+        custom: function () {
+            this.display(arguments[0] || new Date());
+
+            var op = this.el.currentTime.getElementsByTagName('span') ;
+            var _self = this ;
+            for (var i = 0, k ; k = op[i] ; i++ ) {
+                k.onclick = function () {
+                    _self.change(this.id);
+                } ;
+            }
+        }
+    } ;
+
+    
+    var get = function (e) {return document.getElementById(e);} ;
+
+    /*
+     * @module userCalenadr 日期接口
+     * @param (el) 触发日期控件的DOM 必选
+     * @param (callback) 选择日期的回调函数 必选
+     * @param (nowDate) 初始化当前时间 可选
+     * @param (pos) 日期控件相对于的触发日期控件DOM的偏移量，默认值[0, 20] 可选
+     */
+    var userCalendar = function (el, callback, nowDate, pos) {
+        insertCalendar();
+        var config = {
+            el: {
+                year: get('currentYear'),
+                month: get('currentMonth'),
+                currentTime: get('currentTime'),
+                days: get('days'),
+                today: 'today'
+            }
+        } ;
+        var calendar = new Calendar(config) ;
+        nowDate = nowDate.substring(0, 10 );
+        if (/\d{4}-\d{2}-\d{2}/.test(nowDate)){
+            nowDate = nowDate.match(/(\d{4})-(\d{2})-(\d{2})/) ;
+            calendar.custom(new Date(nowDate[1], nowDate[2]-1, nowDate[3]));
+        }else {
+            calendar.custom();
+        }
+        var winCalendar = get('winCalendar') ;
+        var getXY = function (el, type) {
+            type = type || 'x' ;
+            if (type == 'x'){
+                return el.offsetParent ? el.offsetLeft + getXY(el.offsetParent, 'x') : el.offsetLeft;
+            }else if (type == 'y'){
+                return el.offsetParent ? el.offsetTop + getXY(el.offsetParent, 'y') : el.offsetTop;
+            }
+        } ;
+        pos = pos || [0, 20] ;
+        winCalendar.style.left = (getXY(el, 'x') + pos[0]) + 'px' ;
+        winCalendar.style.top = (getXY(el, 'y') + pos[1]) + 'px' ;
+        winCalendar.style.display = 'block' ;
+
+        get('btnOk').onclick = function () {
+            var hm = get('hours').value + ':' + get('minutes').value ;
+            var finalDate = calendar.getFinalDate() + ' ' + hm ;
+            if (callback){
+                callback.call(el, finalDate);
+            }
+            winCalendar.style.display = 'none' ;
+        } ;
+        get('btnCloseCalendar').onclick = function () {
+            winCalendar.style.display = 'none' ;
+        } ;
+        
+    } ;
+
+
+    get('txtTest').onfocus = function () {
+        /*
+         * @param (this) 触发日期控件的DOM 必选
+         * @param (fn...) 选择日期后的回调函数 必选
+         * @param (this.value) 初始化当前时间 可选
+         * @param (pos) 可选
+         */
+        userCalendar(this, function (n) {
+            this.value = n ;
+        }, this.value);
+    } ;
+    get('txtTest2').onfocus = function () {
+        userCalendar(this, function (n) {
+            this.value = n ;
+        }, '', [20, 40]);
+    } ;
+
+
+
+//]]>
+</script>
+</body>
+</html>
