@@ -1,0 +1,83 @@
+<footer>
+    <div class="grid">
+        <div class="unit one-third center-on-mobiles">
+            <p>The contents of this website are &copy;&nbsp;2015 <a href="http://tom.preston-werner.com/">Tom Preston-Werner</a> under the terms of the <a href="https://github.com/jekyll/jekyll/blob/master/LICENSE">MIT&nbsp;License</a>.</p>
+        </div>
+        <div class="unit two-thirds align-right center-on-mobiles">
+            <p>
+                Proudly hosted by
+                <a href="https://github.com">
+                    <img src="/img/footer-logo.png" width="100" height="30" alt="GitHub • Social coding">
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    var anchorForId = function (id) {
+        var anchor = document.createElement("a");
+        anchor.className = "header-link";
+        anchor.href      = "#" + id;
+        anchor.innerHTML = "<i class=\"fa fa-link\"></i>";
+        return anchor;
+    };
+
+    var linkifyAnchors = function (level, containingElement) {
+        var headers = containingElement.getElementsByTagName("h" + level);
+        for (var h = 0; h < headers.length; h++) {
+            var header = headers[h];
+
+            if (typeof header.id !== "undefined" && header.id !== "") {
+                header.appendChild(anchorForId(header.id));
+            }
+        }
+    };
+
+    document.onreadystatechange = function () {
+        if (this.readyState === "complete") {
+            var contentBlock = document.getElementsByClassName("docs")[0] || document.getElementsByClassName("news")[0];
+            if (!contentBlock) {
+                return;
+            }
+            for (var level = 1; level <= 6; level++) {
+                linkifyAnchors(level, contentBlock);
+            }
+        }
+    };
+</script>
+
+
+<!-- Gauges (http://gaug.es/) -->
+<script>
+    var _gauges = _gauges || [];
+    (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '503c5af6613f5d0f19000027');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+    })();
+</script>
+
+
+
+<!-- Google Analytics (http://google.com/analytics) -->
+<script>
+    !function(j,e,k,y,l,L){j.GoogleAnalyticsObject=y,j[y]||(j[y]=function(){
+        (j[y].q=j[y].q||[]).push(arguments)}),j[y].l=+new Date,l=e.createElement(k),
+            L=e.getElementsByTagName(k)[0],l.src='//www.google-analytics.com/analytics.js',
+            L.parentNode.insertBefore(l,L)}(window,document,'script','ga');
+
+    ga('create', 'UA-50755011-1', 'jekyllrb.com');
+    ga('send', 'pageview');
+
+</script>
+
+
+
+</body>
+</html>
