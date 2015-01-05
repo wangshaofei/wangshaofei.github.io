@@ -1,18 +1,12 @@
 ---
-<<<<<<< HEAD
-layout: post
-title: Blogging Like a Hacker
 ---
 
-=======
-layout: default
-title: 我的 Blog
----
-<h2>{{ page.title }}</h2>
-<p>我的博客</p>
+{{site.time}}
+
 <ul>
-   {% for post in site.posts %}
-   <li>{{ post.date | date_to_string }} <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
-   {% endfor %}
+    {% for post in site.posts %}
+    <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
 </ul>
->>>>>>> 0ece98d7ac7696ebc1ad644014c674b5d1089b42

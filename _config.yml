@@ -1,7 +1,14 @@
 safe: true
 lsi: false
-source: _source
-destination: _deploy
-include: [_include]
-timezone: Asia/Chongqing
 encoding: utf-8
+destination: _deploy
+include: [_includes]
+timezone: Asia/Chongqing
+
+defaults:
+  -
+    scope:
+      path: "" # an empty string here means all files in the project
+      type: "posts" # previously `post` in Jekyll 2.2.
+    values:
+      layout: "default"
